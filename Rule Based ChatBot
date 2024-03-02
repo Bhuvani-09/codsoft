@@ -1,39 +1,36 @@
 import re
 
-class CoffeeChatbot:
+class GenpactChatbot:
     def __init__(self):
         self.responses = {
-            "hello": "Hello! How can I assist you today?",
-            "how are you": "I'm just a bot, but thanks for asking!",
-            "what's your favorite coffee?": "As a bot, I don't have taste buds, but I hear espresso is popular!",
-            "recommend a coffee": "If you like something strong, try a double shot espresso. If you prefer something milder, a latte might be good for you.",
-            "where can I find good coffee?": "There are many great coffee shops around. Do you have a specific location in mind?",
-            "I need caffeine": "I understand! Coffee is a popular choice for a caffeine boost.",
-            "I'm tired": "A cup of coffee might help you feel more awake!",
-            "thank you": "You're welcome! If you have any more questions, feel free to ask.",
-            "bye": "Goodbye! Have a great day!",
-            "tell me a coffee joke": "Why did the coffee file a police report? It got mugged!",
-            "I want to learn about coffee": "Coffee is made from roasted coffee beans and is one of the most popular beverages worldwide.",
-            "what's in a cappuccino?": "A cappuccino typically consists of espresso, steamed milk, and a layer of frothed milk on top.",
-            "what's the difference between latte and cappuccino?": "The main difference is the milk content. A latte has more steamed milk and less foam compared to a cappuccino.",
-            "how do you make cold brew coffee?": "Cold brew coffee is made by steeping coarsely ground coffee beans in cold water for an extended period, usually 12-24 hours, and then straining it.",
-            "what's the best time to drink coffee?": "It depends on your personal preference and tolerance to caffeine. Many people enjoy it in the morning to kickstart their day."
+            "hi|hello|hey": "Hello! How can I assist you today?",
+            "how are you": "I'm just a chatbot, but thanks for asking!",
+            "what is your name": "My name is Genpact. How can I help you?",
+            "what can you do": "I can provide information and assistance. Just ask!",
+            "bye|goodbye": "Goodbye! Have a great day!",
+            "help": "Sure, I'm here to help. What do you need?",
+            "thank you|thanks": "You're welcome!",
+            "what time is it": "I'm sorry, I can't provide real-time information.",
+            "what is the weather": "I'm sorry, I can't provide weather information.",
+            "tell me a joke": "Why don't scientists trust atoms? Because they make up everything!",
+            "who created you": "I was created by a team of developers.",
+            "tell me about yourself": "I am Genpact, a rule-based chatbot designed to assist you.",
+            "what is the meaning of life": "That's a deep question! The meaning of life is subjective and varies from person to person.",
+            "tell me a fact": "Did you know that the shortest war in history lasted only 38 minutes? It was between Britain and Zanzibar in 1896!",
         }
 
     def respond(self, user_input):
         for pattern, response in self.responses.items():
-            if re.search(pattern, user_input, re.IGNORECASE):
+            if re.search(pattern, user_input.lower()):
                 return response
-        return "I'm sorry, I don't understand that. Can you please rephrase?"
+        return "I'm sorry, I didn't understand that."
 
-# Instantiate the CoffeeChatbot
-coffee_bot = CoffeeChatbot()
-
-# Example usage
+# Example usage:
+chatbot = GenpactChatbot()
 while True:
     user_input = input("You: ")
     if user_input.lower() == 'exit':
-        print("Coffee: Goodbye! Have a great day!")
+        print("Genpact: Goodbye!")
         break
-    response = coffee_bot.respond(user_input)
-    print("Coffee:", response)
+    else:
+        print("Genpact:", chatbot.respond(user_input))

@@ -1,0 +1,37 @@
+# Sample dataset containing user preferences
+user_preferences = [
+    {"user": "Arun", "movie": "Inception", "genre": "Action"},
+    {"user": "Yashna", "movie": "The Matrix", "genre": "Action"},
+    {"user": "Abinaya", "movie": "The Godfather", "genre": "Crime"},
+    {"user": "kanishka", "movie": "Forrest Gump", "genre": "Drama"},
+    {"user": "Vishvaa", "movie": "The Shawshank Redemption", "genre": "Drama"},
+    {"user": "Bob", "movie": "The Dark Knight", "genre": "Action"},
+    {"user": "Ashwin", "movie": "Pulp Fiction", "genre": "Crime"},
+    {"user": "Pooja", "movie": "The Godfather", "genre": "Crime"},
+    {"user": "Theja", "movie": "The Matrix", "genre": "Action"},
+    {"user": "Diwakar", "movie": "Inception", "genre": "Action"},
+    {"user": "Nethra", "movie": "The Shawshank Redemption", "genre": "Drama"},
+    {"user": "Varun", "movie": "The Dark Knight", "genre": "Action"}
+]
+
+# Function to recommend a movie based on user's most watched genre
+def recommend_movie(user_name, user_preferences):
+    # Find the user's most watched genre
+    user_genres = [pref["genre"] for pref in user_preferences if pref["user"] == user_name]
+    if not user_genres:
+        return "No preferences found for this user."
+    
+    most_watched_genre = max(set(user_genres), key=user_genres.count)
+    
+    # Find a movie in the most watched genre
+    recommended_movie = next((pref["movie"] for pref in user_preferences 
+                              if pref["genre"] == most_watched_genre and pref["user"] != user_name), None)
+    
+    if recommended_movie:
+        return f"We recommend '{recommended_movie}' based on your most watched genre: {most_watched_genre}."
+    else:
+        return "No movie recommendation found."
+
+# Test the recommendation system
+user_name = input("Enter your name: ")
+print(recommend_movie(user_name, user_preferences))
